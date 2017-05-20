@@ -1,32 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
-
-
-import appState from './counterStore.js'
-
 //component
 import { observer, Provider, inject } from 'mobx-react';
+import Todos from './Todos.js'
 
+import todoStore from './todoStore.js'
 
 //App Parent
-
 const App = observer(() => (
-   <Provider appState={appState}>
-     <Counter />
+   <Provider todoStore={todoStore}>
+     <Todos />
    </Provider>
 ))
 
-const Counter = inject("appState")(observer(({ appState }) => {
- return (
-  <div>
-  	<h2>{appState.getCount} </h2>
-    <button onClick={appState.incCounter}>Inc Counter</button>
 
-    <button onClick={appState.descCounter}>Dec Counter</button>		
-  </div>
- )
-}));
 
 ReactDOM.render(
   <App  />,
