@@ -10,6 +10,12 @@ class Todos  {
 	  	},
 	  	addTodo:action((newTodo) => {
 	  		this.todos = this.todos.concat(newTodo)
+	  	}),
+	  	removeTodo:action((index) => {
+	  		
+	  		// ["Learn React", "Learn mobx", "Learn Jest"]
+
+	  		this.todos = [...this.todos.slice(0,index), ...this.todos.slice(index+1)]
 	  	})
 	  })
 	}
