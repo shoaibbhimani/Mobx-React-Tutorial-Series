@@ -1,24 +1,27 @@
-import React from 'react';
+import React from "react";
 
-import { observer } from 'mobx-react'
+import { observer } from "mobx-react";
 
+import TodoItem from "./TodoItem.js";
 
 class TodoList extends React.Component {
-	render(){
+	render() {
 		return (
 			<ul>
-				{
-					this.props.todoStore.todos.map((todoItem, index) => {
-						return <li key={index}>{todoItem} 
-								<button onClick={() => {
-									this.props.todoStore.removeTodo(index)
-								}}>Delete Todo</button>
-					    </li>
-					})
-				}
+				{this.props.todos.map((todoItem, index) => {
+					return (
+						<TodoItem
+							key={index}
+							index={index}
+							removeTodo={this.props.removeTodo}
+							editTodo={this.props.editTodo}
+							todoItem={todoItem}
+						/>
+					);
+				})}
 			</ul>
-			)
+		);
 	}
 }
 
-export default observer(TodoList)
+export default observer(TodoList);
